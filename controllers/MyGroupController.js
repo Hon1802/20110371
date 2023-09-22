@@ -8,39 +8,22 @@ function getIndex(req, res) {
 }
 
 function getMSSV(req, res) {
-    const { id } = req.params;
+    const { MSSV, id } = req.params;
     if (id) {
+        console.log(MSSV, id)
         const student = MyGroupModel.getMemberById(id);
         if (student) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end(`<html>
-                        <body>
-                            <ul>
-                                <li>${student.name}</li>
-                            </ul>
-                        </body>
-                    </html>`);
+        res.end(JSON.stringify(student));
         } else {
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('Not valid');
         }
-    }else 
-    {
-        const studentList = MyGroupModel.map(member => `<li>${member.name}</li>`).join('');
-        res.writeHead(200, 
-            { 
-                'Content-Type': 'text/html' 
-            });
-        res.end(`<html>
-                    <body>
-                        <ul>${studentList}</ul>
-                    </body>
-                </html>`);
     }
 }
 
 function postMSSV(req, res) {
-    const { id } = req.params;
+    const { MSSV, id } = req.params;
     let body = {
         id: id
     };
@@ -56,38 +39,41 @@ function postMSSV(req, res) {
 }
 
 function getMessage(req, res) {
-  const { id } = req.params;
-  if (id && req.method === 'GET') {
-    try{
-        const student = MyGroupModel.getMemberById(id);
-        if (student) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end(`<html>
-                        <body>
-                            <ul>
-                                <li>${student.name}</li>
-                            </ul>
-                        </body>
-                    </html>`);
-        } else {
-            res.writeHead(404, { 'Content-Type': 'text/plain' });
-            res.end('Not valid');
-        }
-    }catch(e)
-    {
-        res.status(400).send('Not valid');
-    }} else
-    {
-        const studentList = MyGroupModel.map(member => `<li>${member.name}</li>`).join('');
-            res.writeHead(200, 
-                { 
-                    'Content-Type': 'text/html' 
-                });
+    const { id } = req.params;
+    if (id ) {
+        try{
+            const student = MyGroupModel.getMemberById(id);
+            if (student) {
+                console.log('value id' ,id)
+            res.writeHead(200, { 'Content-Type': 'text/html' });
             res.end(`<html>
-                        <body>
-                            <ul>${studentList}</ul>
-                        </body>
-                    </html>`);
+                            <body>
+                                <ul>
+                                    <li>${student.name}</li>
+                                </ul>
+                            </body>
+                        </html>`);
+            } else {
+                res.writeHead(404, { 'Content-Type': 'text/plain' });
+                res.end('Not valid');
+            }
+        }catch(e)
+        {
+            res.status(400).send('Not valid');
+        }
+    } else 
+    {
+        console.log('eee')
+        const studentList = MyGroupModel.getAllMember();
+        res.writeHead(200, 
+            { 
+                'Content-Type': 'text/html' 
+            });
+        res.end(`<html>
+                    <body>
+                        <ul>${studentList}</ul>
+                    </body>
+                </html>`);
     }
 
 }

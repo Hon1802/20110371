@@ -4,8 +4,9 @@ const MyGroupController = require('../controllers/MyGroupController'); // Import
 
 // Sử dụng router và controller phù hợp
 router.get('/', MyGroupController.getIndex);
+router.get('/message/:id', MyGroupController.getMessage);
+router.get('/message', MyGroupController.getMessage);
 router.get('/:MSSV/:id', MyGroupController.getMSSV);
 router.post('/:MSSV/:id', MyGroupController.postMSSV);
-router.get('/message/:id', MyGroupController.getMessage);
 
 module.exports = router;

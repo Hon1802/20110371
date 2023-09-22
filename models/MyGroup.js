@@ -17,9 +17,15 @@ function addMember(body)
     return myGroup.push(body)
 }
 
+function getAllMember(body)
+{
+    return myGroup.map(member => member.name)
+}
+
 module.exports = {
     myGroup,
     getMemberById,
     isMemberExist,
-    addMember
+    addMember,
+    getAllMember
 }
