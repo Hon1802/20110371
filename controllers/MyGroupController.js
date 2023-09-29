@@ -10,7 +10,6 @@ function getIndex(req, res) {
 function getMSSV(req, res) {
     const { MSSV, id } = req.params;
     if (id) {
-        console.log(MSSV, id)
         const student = MyGroupModel.getMemberById(id);
         if (student) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -44,7 +43,6 @@ function getMessage(req, res) {
         try{
             const student = MyGroupModel.getMemberById(id);
             if (student) {
-                console.log('value id' ,id)
             res.writeHead(200, { 'Content-Type': 'text/html' });
             res.end(`<html>
                             <body>
@@ -63,7 +61,6 @@ function getMessage(req, res) {
         }
     } else 
     {
-        console.log('eee')
         const studentList = MyGroupModel.getAllMember();
         res.writeHead(200, 
             { 
