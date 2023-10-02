@@ -1,0 +1,54 @@
+<title>{{ title }}</title>
+<div class="create-post">
+    <span>Create new post</span>
+    <form method="POST" action="/create-post" style="width: 50%">   
+        <button type="submit" class="btn btn-secondary" style="width: 100%; border-radius: 10px">Create</button>
+    </form>
+</div>
+<ul >
+    {{#each allPost}}
+        <li class="style-post" >
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 3px 20px">
+                <h2 style="font-weight: 500; font-size:20px">{{name}}</h2>
+                <h2 style="font-size: 15px; font-weight: 200;">ID: {{id}}</h2>
+            </div>
+            <div class="card">
+                <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
+                <div class="card-body">
+                    <h5 class="card-title">{{titleBlog}}</h5>
+                    <p class="card-text">{{dataBlog}}</p>
+                    <div style="display: flex; justify-content:space-between">
+                        <form method="POST" action="/edit-post">
+                            <input type="hidden" name="objectId" value="{{id}}">  
+                            <button type="submit" class="btn btn-primary ">Edit</button>
+                        </form>
+                       
+                        <form method="POST" action="/delete">
+                            <input type="hidden" name="objectId" value="{{id}}">    
+                            <button  type="submit" class=" delete-button btn btn-primary" style="background-color: red;" >Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="style-comment" >
+                <ul class="ul-comment">
+                    {{#each comment}}
+                        <li>
+                            <span class="col-2" style="align-items: center; display: flex; justify-content: center;">{{this.id}}</span>
+                            <span class="'col-9">{{this.cmt}}</span>
+                        </li>
+                    {{/each}}
+                    <form method="POST" action="/add-comment">
+                        <input type="hidden" name="objectId" value="{{id}}">    
+                        <li style=" justify-content:space-around;">
+                            <input class="col-2" type="text" name="commentId" id="commentId" placeholder="{{id}}" class="form-control" />
+                            <input class="col-9" type="text" name="commentText" id="commentText" class="form-control" />
+                        </li>
+                        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Comment</button>
+                    </form>
+                    
+                </ul>
+            </div>
+        </li>
+    {{/each}}
+</ul>

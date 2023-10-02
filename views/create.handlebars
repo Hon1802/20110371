@@ -1,0 +1,24 @@
+<div style="margin-bottom: 100px ;">
+    <form method="POST" action="/create-post-detail">
+        <div class="form-outline">
+            <div class="input-field">
+                <span>ID</span>
+                <input type="text" name="inputId" id="inputId" class="form-control" />
+            </div>
+            <div class="input-field">
+                <span>Name</span>
+                <input type="text" name="inputName" id="inputName" class="form-control" />
+            </div>
+            <div class="input-field">
+                <span>Title Blog</span>
+                <input type="text" name="inputTitle" id="inputTitle" class="form-control" />
+            </div>
+            <div class="input-field">
+                <span>Data Blog</span>
+                <textarea class="form-control" name="inputData" id="inputData" rows="4"></textarea>
+            </div>
+        </div>
+        <input type="hidden" name="objectId" value="{{id}}">    
+        <button type="submit" class="btn btn-secondary " style="width: 50%; border-radius: 10px; margin-left: 20%;">Create</button>
+    </form>
+</div>
