@@ -5,11 +5,11 @@ const launchesRouter = require('./routes/launches/launches.router')
 const app = express();
 const cors= require('cors')
 const morgan = require('morgan')
-
+const {connect} = require('./services/mongo') ;
 app.use(cors({
     origin:'http://localhost:3000',
 }))
-
+connect();
 app.use(morgan('combined'));
 app.use(express.json())
 app.use(express.static(path.join(__dirname,'..','public')));

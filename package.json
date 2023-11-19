@@ -21,5 +21,8 @@
     "concurrently": "^8.2.2",
     "morgan": "^1.10.0",
     "supertest": "^6.3.3"
+  },
+  "dependencies": {
+    "mongoose": "^8.0.1"
   }
 }
