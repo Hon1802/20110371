@@ -6,10 +6,14 @@ const app = express();
 const cors= require('cors')
 const morgan = require('morgan')
 const {connect} = require('./services/mongo') ;
+const { loadPlanetData } = require('./models/planets.model')
+const { loadLaunchData } = require('./models/launches.model')
 app.use(cors({
     origin:'http://localhost:3000',
 }))
 connect();
+loadPlanetData();
+loadLaunchData();
 app.use(morgan('combined'));
 app.use(express.json())
 app.use(express.static(path.join(__dirname,'..','public')));
